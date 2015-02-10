@@ -10,6 +10,7 @@
 
 #include <cmath>
 
+#include "sa_math.h"
 #include "../util.h"
 
 #define VECTOR_NORMALIZE_TOLERANCE		(0.01f)
@@ -151,6 +152,8 @@ public:
 	void rotate(const float theta);
 	void normalize_safe( const vector2 &default_val = vector2(1.0f, 0.0f) );
 };
+
+vector2 lerp_heading(const vector2 &cur_heading, const vector2 &target_heading, float pct);
 
 const vector2 ZERO_VECTOR(0.0f, 0.0f);
 const vector2 SCALE_ONE(1.0f, 1.0f);

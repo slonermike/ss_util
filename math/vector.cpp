@@ -45,3 +45,11 @@ void vector2::normalize_safe( const vector2 &default_val /*= RIGHT_VECTOR */ )
 	}
 }
 
+vector2 lerp_heading( const vector2 &cur_heading, const vector2 &target_heading, float pct )
+{
+	float rads = lerp_radians(cur_heading.extract_heading(), target_heading.extract_heading(), pct);
+	vector2 out_val;
+	out_val.make_heading(rads);
+	return out_val;
+}
+

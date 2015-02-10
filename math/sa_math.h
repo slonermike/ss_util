@@ -3,20 +3,48 @@
 
 #pragma once
 
-#include "vector.h"
-#include "matrix.h"
+#include <cmath>
 
-void rotate_around_point( const vector2 &pos, const matrix &orient, const vector2 &rotate_around, const matrix &rotation, vector2 &pos_out, matrix &orient_out );
-void rotate_around_point( const vector2 &pos, const vector2 &rotate_around, const matrix &rotation, vector2 &pos_out);
+// Type conversions
+#define i2fl(n) ((float)(n))
+#define fl2i(n) ((int)(n))
+#define d2fl(n) ((float)(n))
 
-void world_to_local(const vector2 &pos_in, const matrix &orient_in, const vector2 &local_origin, const matrix &local_origin_orient, vector2 &pos_out, matrix &orient_out);
-void local_to_world(const vector2 &pos_in, const matrix &orient_in, const vector2 &local_origin, const matrix &local_origin_orient, vector2 &pos_out, matrix &orient_out);
+#define SQUARED(a) ((a)*(a))
 
-void world_to_local(const vector2 &pos_in, const vector2 &local_origin, const matrix &local_origin_orient, vector2 &pos_out);
-void local_to_world( const vector2 &pos_in, const vector2 &local_origin, const matrix &local_origin_orient, vector2 &pos_out );
+#define fl_equals(a,b,t) (fabs(a - b) < t)
+#define fl_floor(n) floor(n)
+#define fl_abs(n) fabs(n)
+#define fl_sign(n) ((n < 0.f) ? -1.0f : 1.0f)
+#define fl_cap(a,min,max) (a > max ? max : (a < min ? min : a))
 
-void scale_pos(const vector2 &pos_in, const vector2 &scale, vector2 &pos_out);
-void scale_pos_and_orient(const vector2 &pos_in, const matrix &orient_in, const vector2 &scale, vector2 &pos_out, matrix &orient_out);
+// trig
+#define fl_cos(n)	cos(n)
+#define fl_sin(n)	sin(n)
+#define fl_tan(n)	tan(n)
+#define fl_acos(n)	acos(n)
+#define fl_asin(n)	asin(n)
+#define fl_atan(n)	atan(n)
+
+#define fl_is_nan(n) (n != n)
+
+// Fun with constants!
+#define MS_PER_SEC			(1000)
+#ifndef PI
+#define PI (3.14159f)
+#define PI_OVER_2 (1.57079633f)
+#define PI_2 (6.28318531f)
+#endif
+
+#define TWO_PI (6.28318531f)
+#define COS_45	(0.707106781f)
+#define COS_10	(0.98480775301f)
+#define COS_5	(0.99619469809f)
+#define RADIANS_PER_DEGREE (0.0174532925f)
+#define DEGREES_PER_RADIAN (57.2957795f)
+
+#define fl_deg_to_rad(d) (d * RADIANS_PER_DEGREE)
+#define fl_rad_to_deg(r) (r * DEGREES_PER_RADIAN)
 
 inline float clamp_radians_positive(float radians)
 {
@@ -39,8 +67,5 @@ inline float clamp_radians_pos_neg(float radians)
 }
 
 float lerp_radians(float start_radians, float end_radians, const float pct);
-vector2 lerp_heading(const vector2 &cur_heading, const vector2 &target_heading, float pct);
-
-void lerp_matrix(const matrix &from_orient, const matrix &to_orient, const float pct, matrix &orient_out);
 
 #endif // __SA_MATH_H

@@ -9,7 +9,6 @@
 // and adapted to fit my needs.
 
 #include <cmath>
-#include "../util.h"
 #include "vector.h"
 
 class matrix {
@@ -197,5 +196,17 @@ public:
 const matrix IDENTITY_MATRIX(vector2(1.0f, 0.0f), vector2(0.0f, 1.0f));
 
 void rotate_around_point(const vector2 &pos, const vector2 &orient, const vector2 &rotate_around, const matrix &rotation, vector2 &pos_out, matrix &orient_out);
+void rotate_around_point( const vector2 &pos, const vector2 &rotate_around, const matrix &rotation, vector2 &pos_out);
+
+void world_to_local(const vector2 &pos_in, const matrix &orient_in, const vector2 &local_origin, const matrix &local_origin_orient, vector2 &pos_out, matrix &orient_out);
+void local_to_world(const vector2 &pos_in, const matrix &orient_in, const vector2 &local_origin, const matrix &local_origin_orient, vector2 &pos_out, matrix &orient_out);
+
+void world_to_local(const vector2 &pos_in, const vector2 &local_origin, const matrix &local_origin_orient, vector2 &pos_out);
+void local_to_world( const vector2 &pos_in, const vector2 &local_origin, const matrix &local_origin_orient, vector2 &pos_out );
+
+void scale_pos(const vector2 &pos_in, const vector2 &scale, vector2 &pos_out);
+void scale_pos_and_orient(const vector2 &pos_in, const matrix &orient_in, const vector2 &scale, vector2 &pos_out, matrix &orient_out);
+
+void lerp_matrix(const matrix &from_orient, const matrix &to_orient, const float pct, matrix &orient_out);
 
 #endif
