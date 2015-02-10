@@ -37,6 +37,7 @@ do {												\
 
 // Fun with constants!
 #define MS_PER_SEC			(1000)
+#define US_PER_MS				(1000)		// Microseconds per millisecond.
 #ifndef PI
 #define PI (3.14159f)
 #define PI_OVER_2 (1.57079633f)
