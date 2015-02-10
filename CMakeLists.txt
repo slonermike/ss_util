@@ -1,1 +1,1 @@
-add_library(ss_util str_util.cpp error_reporting.cpp checksum.cpp math/sa_math.cpp math/matrix.cpp math/vector.cpp)
+add_library(ss_util str_util.cpp error_reporting.cpp checksum.cpp math/ss_math.cpp math/matrix.cpp math/vector.cpp)

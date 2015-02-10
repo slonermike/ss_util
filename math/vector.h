@@ -10,7 +10,7 @@
 
 #include <cmath>
 
-#include "sa_math.h"
+#include "ss_math.h"
 #include "../util.h"
 
 #define VECTOR_NORMALIZE_TOLERANCE		(0.01f)

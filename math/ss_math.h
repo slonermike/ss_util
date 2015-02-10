@@ -1,5 +1,5 @@
-#ifndef __SA_MATH_H
-#define __SA_MATH_H
+#ifndef __SS_MATH_H
+#define __SS_MATH_H
 
 #pragma once
 
@@ -68,4 +68,4 @@ inline float clamp_radians_pos_neg(float radians)
 
 float lerp_radians(float start_radians, float end_radians, const float pct);
 
-#endif // __SA_MATH_H
+#endif // __SS_MATH_H
