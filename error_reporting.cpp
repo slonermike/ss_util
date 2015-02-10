@@ -32,7 +32,7 @@ struct reported_error {
 
 std::vector<reported_error> Reported_error_list;
 
-void error_reporting_system_init()
+void error_reporting_system_initialize()
 {
 	Reported_error_list.clear();
 #ifdef ERROR_REPORTING_ENABLED

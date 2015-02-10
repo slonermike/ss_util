@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include "math/ss_math.h"
+#include "system_process.h"
 
 // System-level parameters.
 //
@@ -33,10 +34,10 @@ int Game_time_ms = 0;
 bool Game_paused = false;
 bool Frame_limiting = true;
 
-
 // Local variables.
 static clock_t Frame_start_clocks = 0;
 static float Timescale = 1.0f;
+static bool Quit_message_posted = false;
 
 // Frame time logging.
 static uint Frame_time_log[NUM_FRAME_TIMES_TO_LOG];
@@ -47,8 +48,9 @@ static uint Frame_time_log_iter = 0;
 
 // To be called at the start of execution to set everything up.
 //
-bool ss_init()
+bool ss_initialize()
 {
+	system_process_initialize();
 	// Set up the time tracking system.
 	Frame_start_clocks = clock();
 	
@@ -58,6 +60,11 @@ bool ss_init()
 	memset(Sim_time_log, 0, sizeof(uint) * NUM_FRAME_TIMES_TO_LOG);
 	
 	return true;
+}
+
+void ss_shutdown()
+{
+	system_process_shutdown();
 }
 
 // Called every frame to process...well...everything.
@@ -103,15 +110,15 @@ void ss_do_frame()
 	clock_t process_start = clock();
 	
 
-	/* SS-TODO:
 	// Process all the base systems.
 	{
-		input_process();
+// SS-TODO:		input_process();
 		system_process_process();
-		gr_process();
-		console_process();
+// SS-TODO:		gr_process();
+// SS-TODO:		console_process();
 	}
 
+/* SS-TODO:
 	{
 		if (Game_paused_step || input_is_key_just_pressed(IKT_NUMPAD1) || input_is_key_just_pressed(IKT_PAUSE)) {
 			Game_paused = !Game_paused;
@@ -125,17 +132,37 @@ void ss_do_frame()
 	}
 
 	input_post_process();
-	*/
+*/
 
 	Sim_time_log[Frame_time_log_iter] = (uint)( i2fl(clock() - process_start) / i2fl(CLOCKS_PER_MS) );
 }
 
-void ss_set_timescale( float scale_s )
+// Tell the application to quit.
+//
+void ss_post_quit_message()
 {
-	CAP(scale_s, TIMESCALE_MIN, TIMESCALE_MAX);
-	Timescale = scale_s;
+	Quit_message_posted = true;
 }
 
+// Ask if the application is ready to quit.
+//
+bool ss_is_quit_message_posted()
+{
+	return Quit_message_posted;
+}
+
+// Scale time by the specified value.
+//
+// scale_pct: 0.1 = 10% speed, 10 = 1000% speed.
+//
+void ss_set_timescale( float scale_pct )
+{
+	CAP(scale_pct, TIMESCALE_MIN, TIMESCALE_MAX);
+	Timescale = scale_pct;
+}
+
+// Get timescale multiplier value.
+//
 float ss_get_timescale()
 {
 	return Timescale;

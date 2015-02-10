@@ -17,13 +17,14 @@ extern int Game_time_ms;
 extern bool Game_paused;
 extern bool Frame_limiting;
 
-// Called at application start.
-bool ss_init();
+bool ss_initialize();			// Called at application start.
+void ss_shutdown();				// Called at application shutdown.
+void ss_do_frame();				// Called every frame--performs frame limiting internally.
 
-// Called every frame.
-void ss_do_frame();
+void ss_post_quit_message();
+bool ss_is_quit_message_posted();
 
-void ss_set_timescale( float scale_s );
+void ss_set_timescale( float scale_pct );
 float ss_get_timescale();
 
 #endif // __SS_H

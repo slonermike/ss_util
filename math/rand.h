@@ -10,7 +10,7 @@
 #include "ss_math.h"
 
 bool rand_inited();
-void rand_sys_init(uint seed = UINT_MAX);
+void rand_sys_initialize(uint seed = UINT_MAX);
 
 // Standard rand() only occupies up to 15 bits.  This will
 // occupy 31 bits.

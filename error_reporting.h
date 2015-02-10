@@ -12,7 +12,7 @@ enum error_report_type {
 	ERT_NUM_TYPES,
 };
 
-void error_reporting_system_init();
+void error_reporting_system_initialize();
 void error_reporting_system_shutdown();
 void error_reporting_render();
 

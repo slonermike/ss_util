@@ -8,7 +8,7 @@ bool rand_inited()
 	return Rand_inited;
 }
 
-void rand_sys_init( uint seed /*= UINT_MAX*/ )
+void rand_sys_initialize( uint seed /*= UINT_MAX*/ )
 {
 	// set the seed.
 	if (seed != UINT_MAX) {
