@@ -5,6 +5,7 @@
 #include "stdarg.h"
 
 #include "util.h"
+#include "math/ss_math.h"
 
 #define MAX_ERROR_SCREEN_PCT				(0.33f)
 #define ERROR_DISPLAY_MS					(10000)

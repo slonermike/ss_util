@@ -11,6 +11,13 @@
 #define d2fl(n) ((float)(n))
 
 #define SQUARED(a) ((a)*(a))
+#define MAX(a,b) ((a > b) ? a : b)
+#define MIN(a,b) ((a < b) ? a : b)
+#define LERP(a,b,pct) (a + ((b - a) * pct))
+#define CAP(a,min,max)								\
+do {												\
+	a = (a < min) ? min : ((a > max) ? max : a);	\
+} while (0)
 
 #define fl_equals(a,b,t) (fabs(a - b) < t)
 #define fl_floor(n) floor(n)

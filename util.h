@@ -97,13 +97,6 @@ typedef double float64;
 // Mega macros!
 #define SWAP(a,b,T) T t; t = a; a = b; b = t;
 #define SWAP_SECONDARY(a, b) t = a; a = b; b = t;
-#define MAX(a,b) ((a > b) ? a : b)
-#define MIN(a,b) ((a < b) ? a : b)
-#define LERP(a,b,pct) (a + ((b - a) * pct))
-#define CAP(a,min,max)								\
-do {												\
-	a = (a < min) ? min : ((a > max) ? max : a);	\
-} while (0)
 
 #ifndef NULL
 #define NULL 0
